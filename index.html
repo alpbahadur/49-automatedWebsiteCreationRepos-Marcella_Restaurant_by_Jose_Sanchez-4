@@ -3,9 +3,733 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
+    <title>Marcella Restaurant by José Sánchez | Creative Creole Gastronomy | San Juan, Puerto Rico</title>
+    <meta name="description" content="Experience the story of flavor at Marcella Restaurant - where Puerto Rican roots meet international culinary techniques. Fresh, locally sourced ingredients crafted with love.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'violet-primary': '#4A235A',
+                        'lavender-light': '#F5EEF8',
+                        'gold-accent': '#D4AF37',
+                        'text-primary': '#333333',
+                        'text-secondary': '#666666',
+                    },
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'lato': ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333333;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Transition */
+        .nav-transparent {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-solid {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Hover Effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(74, 35, 90, 0.15);
+        }
+
+        /* Button Animations */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+
+        /* Hero Overlay */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(74, 35, 90, 0.75) 0%, rgba(74, 35, 90, 0.4) 100%);
+        }
+
+        /* Orchid Decoration */
+        .orchid-decoration {
+            position: absolute;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        /* Image Zoom on Hover */
+        .image-zoom-container {
+            overflow: hidden;
+        }
+
+        .image-zoom {
+            transition: transform 0.5s ease;
+        }
+
+        .image-zoom-container:hover .image-zoom {
+            transform: scale(1.1);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #4A235A 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
 </head>
 <body>
-    <!-- Content will be added here -->
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 nav-transparent">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="./materials/image_0.png" alt="Marcella Restaurant Logo" class="h-12 md:h-16 w-auto">
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-gold-accent transition-colors duration-300">Home</a>
+                    <a href="#story" class="text-white hover:text-gold-accent transition-colors duration-300">Our Story</a>
+                    <a href="#menu" class="text-white hover:text-gold-accent transition-colors duration-300">Menu</a>
+                    <a href="#gallery" class="text-white hover:text-gold-accent transition-colors duration-300">Gallery</a>
+                    <a href="#contact" class="text-white hover:text-gold-accent transition-colors duration-300">Contact</a>
+                    <a href="tel:+17874631403" class="bg-gold-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 btn-primary">
+                        Reserve Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu lg:hidden">
+                <div class="pt-4 pb-4 space-y-4">
+                    <a href="#home" class="block text-white hover:text-gold-accent transition-colors duration-300 py-2">Home</a>
+                    <a href="#story" class="block text-white hover:text-gold-accent transition-colors duration-300 py-2">Our Story</a>
+                    <a href="#menu" class="block text-white hover:text-gold-accent transition-colors duration-300 py-2">Menu</a>
+                    <a href="#gallery" class="block text-white hover:text-gold-accent transition-colors duration-300 py-2">Gallery</a>
+                    <a href="#contact" class="block text-white hover:text-gold-accent transition-colors duration-300 py-2">Contact</a>
+                    <a href="tel:+17874631403" class="block bg-gold-accent text-white px-6 py-3 rounded-full font-semibold text-center hover:bg-opacity-90 transition-all duration-300 mt-4">
+                        Reserve Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="./materials/image_35.jpg" alt="Marcella Restaurant" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <!-- Orchid Decoration -->
+        <div class="orchid-decoration top-10 right-10 w-64 h-64 z-10">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#F5EEF8" d="M39.5,-65.5C51.6,-58.6,62.3,-48.5,69.8,-36.2C77.3,-23.9,81.6,-9.4,80.2,4.5C78.8,18.4,71.7,31.7,62.4,42.8C53.1,53.9,41.6,62.8,28.7,68.2C15.8,73.6,1.5,75.5,-13.2,73.8C-27.9,72.1,-43,66.8,-55.3,58.2C-67.6,49.6,-77.1,37.7,-80.8,24.3C-84.5,10.9,-82.4,-4,-76.8,-17.2C-71.2,-30.4,-62.1,-42.9,-50.5,-50.1C-38.9,-57.3,-25.8,-59.2,-13.2,-57.7C-0.6,-56.2,11.5,-51.3,23.4,-47C35.3,-42.7,27.4,-72.4,39.5,-65.5Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-20 text-center text-white px-6 fade-in visible">
+            <h1 class="text-5xl md:text-7xl font-montserrat font-light mb-6 leading-tight">
+                The Story of Flavor,<br>
+                <span class="text-gold-accent">Inspired by Love</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 font-light max-w-3xl mx-auto">
+                Where Puerto Rican roots meet international culinary artistry
+            </p>
+            <a href="tel:+17874631403" class="inline-block bg-gold-accent text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 btn-primary shadow-lg">
+                Book a Table
+            </a>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About/Story Section -->
+    <section id="story" class="py-20 md:py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Image -->
+                <div class="fade-in image-zoom-container rounded-lg overflow-hidden shadow-2xl">
+                    <img src="./materials/image_30.jpg" alt="Chef José Sánchez" class="w-full h-full object-cover image-zoom">
+                </div>
+
+                <!-- Content -->
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-montserrat mb-6 text-violet-primary">
+                        The Heart Behind<br>
+                        <span class="gradient-text">Marcella Restaurant</span>
+                    </h2>
+                    <p class="text-lg text-text-secondary mb-6 leading-relaxed">
+                        Named after Chef José Sánchez's beloved grandmother, Marcella Restaurant is more than a culinary destination—it's a tribute to family, tradition, and the art of cooking with love.
+                    </p>
+                    <p class="text-lg text-text-secondary mb-6 leading-relaxed">
+                        The violet orchid, Marcella's favorite flower, weaves through every aspect of our restaurant, symbolizing the beauty, elegance, and passion we pour into every dish. Since beginning his journey in 2009, Chef Sánchez has traveled the world, learning from master chefs and bringing international techniques back to his Puerto Rican roots.
+                    </p>
+                    <p class="text-lg text-text-secondary mb-8 leading-relaxed">
+                        At Marcella, we celebrate creative Creole gastronomy, crafting innovative dishes from the freshest local ingredients sourced directly from Puerto Rican farmers and producers. Every plate tells a story, every flavor evokes a memory.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-lavender-light px-6 py-4 rounded-lg">
+                            <p class="text-violet-primary font-semibold text-lg">Est. 2022</p>
+                            <p class="text-text-secondary text-sm">San Juan, PR</p>
+                        </div>
+                        <div class="bg-lavender-light px-6 py-4 rounded-lg">
+                            <p class="text-violet-primary font-semibold text-lg">Local Ingredients</p>
+                            <p class="text-text-secondary text-sm">Farm to Table</p>
+                        </div>
+                        <div class="bg-lavender-light px-6 py-4 rounded-lg">
+                            <p class="text-violet-primary font-semibold text-lg">Family Friendly</p>
+                            <p class="text-text-secondary text-sm">All Ages Welcome</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-lavender-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-montserrat mb-4 text-violet-primary">
+                    What Makes Us Special
+                </h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                    Discover the unique elements that set Marcella Restaurant apart
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in">
+                    <div class="w-16 h-16 bg-violet-primary rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-montserrat text-center mb-4 text-violet-primary">
+                        A Personal Story
+                    </h3>
+                    <p class="text-text-secondary text-center leading-relaxed">
+                        Every dish honors the legacy of Marcella, Chef José's grandmother, whose passion for cooking inspired this culinary journey.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in">
+                    <div class="w-16 h-16 bg-gold-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-montserrat text-center mb-4 text-violet-primary">
+                        Local & Fresh
+                    </h3>
+                    <p class="text-text-secondary text-center leading-relaxed">
+                        We partner with local Puerto Rican farmers and producers to bring you the freshest ingredients in every dish.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in">
+                    <div class="w-16 h-16 bg-violet-primary rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-montserrat text-center mb-4 text-violet-primary">
+                        Creative Fusion
+                    </h3>
+                    <p class="text-text-secondary text-center leading-relaxed">
+                        Experience the perfect blend of traditional Puerto Rican flavors elevated with international culinary techniques.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Preview Section -->
+    <section id="menu" class="py-20 md:py-32 bg-white relative overflow-hidden">
+        <!-- Background Orchid -->
+        <div class="orchid-decoration bottom-0 left-0 w-96 h-96 z-0">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#F5EEF8" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-46.1C87.4,-33.1,90,-17.2,88.5,-2C87,13.2,81.4,27.7,73.2,40.8C65,53.9,54.2,65.6,41.2,72.8C28.2,80,13.1,82.7,-1.5,85.5C-16.1,88.3,-32.2,91.2,-45.8,86.2C-59.4,81.2,-70.5,68.3,-77.8,53.4C-85.1,38.5,-88.6,21.6,-87.9,5.2C-87.2,-11.2,-82.3,-27.1,-74.3,-41.2C-66.3,-55.3,-55.2,-67.6,-41.5,-75C-27.8,-82.4,-11.4,-84.9,3.5,-90.8C18.4,-96.7,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-montserrat mb-4 text-violet-primary">
+                    Culinary Excellence
+                </h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                    Creative Creole gastronomy featuring innovative dishes crafted with passion
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Menu Item 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-lift fade-in image-zoom-container">
+                    <img src="./materials/image_36.jpg" alt="Signature Dish" class="w-full h-64 object-cover image-zoom">
+                    <div class="p-6">
+                        <h3 class="text-xl font-montserrat text-violet-primary mb-2">Signature Creations</h3>
+                        <p class="text-text-secondary text-sm">Innovative interpretations of classic flavors</p>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-lift fade-in image-zoom-container">
+                    <img src="./materials/image_37.jpg" alt="Fresh Seafood" class="w-full h-64 object-cover image-zoom">
+                    <div class="p-6">
+                        <h3 class="text-xl font-montserrat text-violet-primary mb-2">Fresh Seafood</h3>
+                        <p class="text-text-secondary text-sm">Locally sourced ocean delights</p>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-lift fade-in image-zoom-container">
+                    <img src="./materials/image_38.jpg" alt="Premium Cuts" class="w-full h-64 object-cover image-zoom">
+                    <div class="p-6">
+                        <h3 class="text-xl font-montserrat text-violet-primary mb-2">Premium Selections</h3>
+                        <p class="text-text-secondary text-sm">Expertly prepared with artisan techniques</p>
+                    </div>
+                </div>
+
+                <!-- Menu Item 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-lift fade-in image-zoom-container">
+                    <img src="./materials/image_39.jpg" alt="Artisan Desserts" class="w-full h-64 object-cover image-zoom">
+                    <div class="p-6">
+                        <h3 class="text-xl font-montserrat text-violet-primary mb-2">Artisan Desserts</h3>
+                        <p class="text-text-secondary text-sm">Sweet endings with tropical flair</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <a href="tel:+17874631403" class="inline-block bg-violet-primary text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 btn-primary shadow-lg">
+                    View Full Menu & Reserve
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-lavender-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-montserrat mb-4 text-violet-primary">
+                    A Feast for the Eyes
+                </h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                    Experience the beauty and elegance of our culinary creations
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_5.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_6.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_8.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_9.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_10.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_11.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_12.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+                <div class="image-zoom-container rounded-lg overflow-hidden shadow-lg fade-in h-64">
+                    <img src="./materials/image_13.jpg" alt="Gallery Image" class="w-full h-full object-cover image-zoom">
+                </div>
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <a href="https://www.instagram.com/marcella.rest/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-violet-primary hover:text-gold-accent transition-colors duration-300 text-lg font-semibold">
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Follow us on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Private Events Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-montserrat mb-6 text-violet-primary">
+                        Host Your Special<br>
+                        <span class="gradient-text">Moments With Us</span>
+                    </h2>
+                    <p class="text-lg text-text-secondary mb-6 leading-relaxed">
+                        From intimate family celebrations to corporate gatherings, Marcella Restaurant provides the perfect setting for your special occasions. Our charming, casual atmosphere combined with exceptional cuisine creates memorable experiences for you and your guests.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-gold-accent mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-text-secondary">Family-friendly environment with special kids' menu</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-gold-accent mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-text-secondary">Customizable menus for private events</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-gold-accent mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-text-secondary">Exceptional service for your guests</span>
+                        </li>
+                    </ul>
+                    <a href="tel:+17874631403" class="inline-block bg-gold-accent text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 btn-primary shadow-lg">
+                        Inquire About Events
+                    </a>
+                </div>
+
+                <!-- Image -->
+                <div class="fade-in image-zoom-container rounded-lg overflow-hidden shadow-2xl">
+                    <img src="./materials/image_18.jpg" alt="Private Events" class="w-full h-full object-cover image-zoom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-lavender-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-montserrat mb-4 text-violet-primary">
+                    Visit Us
+                </h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                    We look forward to welcoming you to Marcella Restaurant
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Location -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center fade-in hover-lift">
+                    <div class="w-16 h-16 bg-violet-primary rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-montserrat text-violet-primary mb-3">Location</h3>
+                    <p class="text-text-secondary">
+                        San Juan<br>
+                        Puerto Rico
+                    </p>
+                </div>
+
+                <!-- Phone -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center fade-in hover-lift">
+                    <div class="w-16 h-16 bg-gold-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-montserrat text-violet-primary mb-3">Phone</h3>
+                    <a href="tel:+17874631403" class="text-text-secondary hover:text-gold-accent transition-colors duration-300">
+                        +1 (787) 463-1403
+                    </a>
+                </div>
+
+                <!-- Hours -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center fade-in hover-lift">
+                    <div class="w-16 h-16 bg-violet-primary rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-montserrat text-violet-primary mb-3">Hours</h3>
+                    <p class="text-text-secondary">
+                        Tuesday - Sunday<br>
+                        5:00 PM - 10:00 PM
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <a href="tel:+17874631403" class="inline-block bg-violet-primary text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 btn-primary shadow-lg">
+                    Make a Reservation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-violet-primary text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- About -->
+                <div>
+                    <img src="./materials/image_0.png" alt="Marcella Restaurant Logo" class="h-16 w-auto mb-4">
+                    <p class="text-lavender-light text-sm leading-relaxed">
+                        Where Puerto Rican roots meet international culinary artistry. A tribute to family, tradition, and the art of cooking with love.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-montserrat mb-4 text-gold-accent">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-lavender-light hover:text-gold-accent transition-colors duration-300">Home</a></li>
+                        <li><a href="#story" class="text-lavender-light hover:text-gold-accent transition-colors duration-300">Our Story</a></li>
+                        <li><a href="#menu" class="text-lavender-light hover:text-gold-accent transition-colors duration-300">Menu</a></li>
+                        <li><a href="#gallery" class="text-lavender-light hover:text-gold-accent transition-colors duration-300">Gallery</a></li>
+                        <li><a href="#contact" class="text-lavender-light hover:text-gold-accent transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-montserrat mb-4 text-gold-accent">Contact</h4>
+                    <ul class="space-y-2 text-lavender-light text-sm">
+                        <li>San Juan, Puerto Rico</li>
+                        <li><a href="tel:+17874631403" class="hover:text-gold-accent transition-colors duration-300">+1 (787) 463-1403</a></li>
+                        <li class="pt-2">Tuesday - Sunday<br>5:00 PM - 10:00 PM</li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-montserrat mb-4 text-gold-accent">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/marcellarestaurante/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-gold-accent transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/marcella.rest/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-gold-accent transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white border-opacity-20 pt-8 text-center">
+                <p class="text-lavender-light text-sm">
+                    &copy; 2024 Marcella Restaurant by José Sánchez. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = navbar.querySelectorAll('a:not(.btn-primary)');
+
+            if (window.scrollY > 100) {
+                navbar.classList.remove('nav-transparent');
+                navbar.classList.add('nav-solid');
+                navLinks.forEach(link => {
+                    if (!link.classList.contains('bg-gold-accent')) {
+                        link.classList.remove('text-white');
+                        link.classList.add('text-text-primary');
+                    }
+                });
+            } else {
+                navbar.classList.remove('nav-solid');
+                navbar.classList.add('nav-transparent');
+                navLinks.forEach(link => {
+                    if (!link.classList.contains('bg-gold-accent')) {
+                        link.classList.remove('text-text-primary');
+                        link.classList.add('text-white');
+                    }
+                });
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        const fadeElements = document.querySelectorAll('.fade-in:not(.visible)');
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
